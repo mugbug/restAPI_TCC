@@ -1,0 +1,22 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "API to capture feedbacks during classes",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "start": "nodemon server.js"
+  },
+  "keywords": [
+    "TCC"
+  ],
+  "author": "Mateus",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^1.18.3"
+  },
+  "dependencies": {
+    "express": "^4.16.3",
+    "mongoose": "^5.2.7"
+  }
+}
