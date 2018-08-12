@@ -3,13 +3,13 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var SessionSchema = new Schema({
-    sessionPin: {
+    pin: {
         type: String
     },
-    sessionStamp: {
+    time: {
         type: String
     },
-    sessionTeacher: {
+    owner: {
         type: String
     }
 });
