@@ -28,7 +28,6 @@ module.exports = function (app) {
     app.route('/comments/:sessionId/:guestId', function (req, res) {
         res.send(req.params.sessionId);
         res.send(req.params.guestId);
-        res.send(req.params.guestComment);
     })
         .post(commentController.create_a_comment);
 };
