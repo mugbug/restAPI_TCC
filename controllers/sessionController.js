@@ -1,8 +1,7 @@
 'use strict';
 
-
 var mongoose = require('mongoose'),
-    Session = mongoose.model('Sessions');
+Session = mongoose.model('Sessions');
 
 exports.list_all_sessions = function (req, res) {
 
