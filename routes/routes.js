@@ -1,26 +1,34 @@
 'use strict';
 module.exports = function (app) {
-    var controller = require('../controllers/sessionController');
+    var sessionController = require('../controllers/sessionController');
+    var commentController = require('../controllers/commentController');
 
     // todoList Routes
     app.route('/sessions')
-        .get(controller.list_all_sessions)
-        .post(controller.create_a_session);
+        .get(sessionController.list_all_sessions)
+        .post(sessionController.create_a_session);
 
     app.route('/sessions/:sessionId/', function (req, res) {
         res.send(req.params.sessionId);
     })
-        .delete(controller.delete_a_session);
+        .delete(sessionController.delete_a_session);
 
     app.route('/sessions/:sessionId/:guestId', function (req, res) {
         res.send(req.params.sessionId);
         res.send(req.params.guestId);
-    })   
-        .put(controller.add_a_guest); 
+    })
+        .put(sessionController.add_a_guest);
 
-    app.route('/sessions/:sessionId/:guestId/:guestComment', function(req, res){
+    app.route('/comments')
+        .get(commentController.list_all_comments);
+
+    app.route('/comments/:guestId')
+        .delete(commentController.delete_a_comment);    
+
+    app.route('/comments/:sessionId/:guestId', function (req, res) {
         res.send(req.params.sessionId);
         res.send(req.params.guestId);
         res.send(req.params.guestComment);
-    })    
+    })
+        .post(commentController.create_a_comment);
 };

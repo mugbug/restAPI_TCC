@@ -15,15 +15,17 @@ exports.list_all_comments = function (req, res) {
 
 exports.create_a_comment = function (req, res) {
 
-    var new_comment = new Comment(req.body);
-    new_comment.save(function (err, comment) {
-        if (err)
-            res.send(err);
-        res.json(comment);
+    Session.find({ pin: req.params.sessionId, guests: req.params.guestId }, function (err, comment) {
+        var new_comment = new Comment(req.body);
+        new_comment.save(function (err, comment) {
+            if (err)
+                res.send(err);
+            res.json(comment);
+        });
     });
 };
 
-exports.delete_a_session = function (req, res) {
+exports.delete_a_comment = function (req, res) {
 
     Comment.remove({ pin: req.params.guestId }, function (err, session) {
         if (err)
