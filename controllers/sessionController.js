@@ -34,6 +34,11 @@ exports.delete_a_session = function (req, res) {
 
 exports.add_a_guest = function (req, res) {
 
-    Session.update({ pin: req.params.sessionId }, { $push: { guests: req.params.guestId } });
-
+    var sessionKey = { pin: req.params.sessionId };
+    var update = { $push: { guests: req.params.guestId } };
+    Session.update(sessionKey, update, function(err, session) {
+        if(err)
+            res.send(err);
+        res.send(session);    
+    });
 }
