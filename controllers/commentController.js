@@ -7,8 +7,10 @@ Comment = mongoose.model('Comments');
 exports.list_all_comments = function (req, res) {
 
     Comment.find({}, function (err, comment) {
-        if (err)
+        if (err) {
             res.send(err);
+            return
+        }
         res.json(comment);
     });
 };
@@ -19,8 +21,10 @@ exports.create_a_comment = function (req, res) {
 
     Session.find({ pin: req.body.pin, guests: { "$in": [req.body.guestId] } }, function (err, comment) {
         
-        if (err)
+        if (err) {
             res.send(err);
+            return
+        }
 
         if(comment.length){
 
@@ -41,8 +45,10 @@ exports.create_a_comment = function (req, res) {
 exports.delete_a_comment = function (req, res) {
 
     Comment.remove({ pin: req.params.guestId }, function (err, session) {
-        if (err)
+        if (err) {
             res.send(err);
+            return;
+        }
         res.json({ message: 'Task successfully deleted' });
     });
 }
