@@ -2,6 +2,7 @@
 module.exports = function (app) {
     var sessionController = require('../controllers/sessionController');
     var commentController = require('../controllers/commentController');
+    var userController = require('../controllers/userController')
 
     // todoList Routes
     app.route('/sessions')
@@ -20,14 +21,18 @@ module.exports = function (app) {
         .put(sessionController.add_a_guest);
 
     app.route('/comments')
-        .get(commentController.list_all_comments);
+        .get(commentController.list_all_comments)
+        .post(commentController.create_a_comment);;
 
     app.route('/comments/:guestId')
-        .delete(commentController.delete_a_comment);    
+        .delete(commentController.delete_a_comment);
 
-    app.route('/comments/:sessionId/:guestId', function (req, res) {
-        res.send(req.params.sessionId);
-        res.send(req.params.guestId);
+    app.route('/users')
+        .get(userController.list_all_users)
+        .post(userController.create_a_user);
+
+    app.route('/users/:userId/', function (req, res) {
+        res.send(req.params.userId);
     })
-        .post(commentController.create_a_comment);
+        .delete(userController.delete_a_user);
 };
